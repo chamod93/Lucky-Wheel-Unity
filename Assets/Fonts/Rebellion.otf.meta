@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 8bbfca49c034a0c46bc151473849f055
+timeCreated: 1494351490
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Rebellion
+  fontNames:
+  - Rebellion
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
