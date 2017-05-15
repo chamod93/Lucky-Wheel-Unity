@@ -1,0 +1,124 @@
+{
+  "levelData": [
+    {
+      "id": 1,
+      "angle": 90,
+      "limit": 4,
+      "speed": 10
+    },
+    {
+      "id": 2,
+      "angle": 120,
+      "limit": 5,
+      "speed": 10
+    },
+    {
+      "id": 3,
+      "angle": 45,
+      "limit": 6,
+      "speed": 10
+    },
+    {
+      "id": 4,
+      "angle": 45,
+      "limit": 6,
+      "speed": 30
+    },
+    {
+      "id": 5,
+      "angle": 45,
+      "limit": 6,
+      "speed": 70
+    },
+    {
+      "id": 6,
+      "angle": 45,
+      "limit": 6,
+      "speed": 50
+    },
+    {
+      "id": 7,
+      "angle": 45,
+      "limit": 6,
+      "speed": 60
+    },
+    {
+      "id": 8,
+      "angle": 45,
+      "limit": 6,
+      "speed": 40
+    },
+    {
+      "id": 9,
+      "angle": 45,
+      "limit": 6,
+      "speed": 80
+    },
+    {
+      "id": 4,
+      "angle": 45,
+      "limit": 6,
+      "speed": 70
+    },
+    {
+      "id": 10,
+      "angle": 45,
+      "limit": 6,
+      "speed": 70
+    },
+    {
+      "id": 11,
+      "angle": 45,
+      "limit": 6,
+      "speed": 70
+    },
+    {
+      "id": 12,
+      "angle": 45,
+      "limit": 6,
+      "speed": 70
+    },
+    {
+      "id": 13,
+      "angle": 45,
+      "limit": 6,
+      "speed": 70
+    },
+    {
+      "id": 14,
+      "angle": 45,
+      "limit": 6,
+      "speed": 80
+    },
+    {
+      "id": 15,
+      "angle": 45,
+      "limit": 6,
+      "speed": 80
+    },
+    {
+      "id": 16,
+      "angle": 45,
+      "limit": 6,
+      "speed": 80
+    },
+    {
+      "id": 17,
+      "angle": 45,
+      "limit": 6,
+      "speed": 90
+    },
+    {
+      "id": 18,
+      "angle": 45,
+      "limit": 6,
+      "speed": 90
+    },
+    {
+      "id": 19,
+      "angle": 45,
+      "limit": 6,
+      "speed": 90
+    }
+  ]
+}
