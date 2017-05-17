@@ -26,7 +26,7 @@ namespace AssemblyCSharp
             return PlayerPrefs.GetInt(ConfigConstant.PLAYER_CURRENT_STATGE, 1);
         }
 
-        public static void SetCurrentStage(int currentStage)
+        public static void SaveCurrentStage(int currentStage)
         {
             PlayerPrefs.SetInt(ConfigConstant.PLAYER_SOUND_SETTING, currentStage);
         }
