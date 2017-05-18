@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Assets.Scripts.GameScene;
 
 public class GameSceneController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameSceneController : MonoBehaviour
     private GameObject satellite;
     private GameData data;
     private LevelData levelData;
+
+    private SpeedHelper speedHelper;
 
     public float currentSpeed;
     private int currentLevel;
@@ -43,7 +46,7 @@ public class GameSceneController : MonoBehaviour
         currentLevel = PlayerPrefHelper.GetCurrentStage();
         levelData = data.levelData[currentLevel];
         radius = Camera.main.ViewportToWorldPoint(new Vector3(RADIUS, 0, 0)).x - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
-        currentSpeed = levelData.speed;
+        speedHelper = new SpeedHelper(levelData.speed);
     }
 
     private void CreatePlanet()
@@ -81,6 +84,8 @@ public class GameSceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        currentSpeed = speedHelper.GetUpdateSpeed(Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             satellite.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10);
@@ -88,17 +93,12 @@ public class GameSceneController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        RotateMoons();
-    }
 
-    private void RotateMoons()
+    private void FixedUpdate()
     {
         for (int i = 0; i < moons.Length; i++)
         {
-            moons[i].transform.RotateAround(planet.transform.position, new Vector3(0f, 0f, 1f), levelData.speed * Time.deltaTime);
+            moons[i].transform.RotateAround(planet.transform.position, new Vector3(0f, 0f, 1f), currentSpeed * Time.deltaTime);
         }
     }
-
 }
