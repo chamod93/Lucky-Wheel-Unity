@@ -42,6 +42,7 @@ namespace Assets.Scripts.GameScene
 
         private void NextState()
         {
+            elapsedTime = 0;
             state = state + 1;
             if (state > STATE_CHANGING_TO_ORIGIN)
             {
