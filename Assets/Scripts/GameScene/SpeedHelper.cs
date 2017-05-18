@@ -15,7 +15,7 @@ namespace Assets.Scripts.GameScene
         private static readonly int STATE_NEW_SPEED = 2;
         private static readonly int STATE_CHANGING_TO_ORIGIN = 3;
 
-        private static int state;
+        private int state;
 
         private float originSpeed;
         private float elapsedTime;
