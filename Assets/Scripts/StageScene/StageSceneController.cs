@@ -150,6 +150,7 @@ public class StageSceneController : MonoBehaviour
 
     private void StartGame(int level)
     {
+        PlayerPrefHelper.SetPassingStage(level);
         SceneManager.LoadScene("GameScene");
     }
 

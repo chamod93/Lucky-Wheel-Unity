@@ -18,7 +18,7 @@ public class GameSceneController : MonoBehaviour
     private SpeedHelper speedHelper;
 
     public float currentSpeed;
-    private int currentLevel;
+    private int passingStage;
     private int angle;
     private float radius;
 
@@ -43,8 +43,8 @@ public class GameSceneController : MonoBehaviour
     private void InitVariables()
     {
         data = GameData.LoadFromJSONResource();
-        currentLevel = PlayerPrefHelper.GetCurrentStage();
-        levelData = data.levelData[currentLevel];
+        passingStage = PlayerPrefHelper.GetPassingStage();
+        levelData = data.levelData[passingStage];
         radius = Camera.main.ViewportToWorldPoint(new Vector3(RADIUS, 0, 0)).x - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
         speedHelper = new SpeedHelper(levelData.speed);
     }

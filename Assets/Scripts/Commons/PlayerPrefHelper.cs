@@ -30,6 +30,16 @@ namespace AssemblyCSharp
         {
             PlayerPrefs.SetInt(ConfigConstant.PLAYER_SOUND_SETTING, currentStage);
         }
+
+        public static int GetPassingStage()
+        {
+            return PlayerPrefs.GetInt(ConfigConstant.PLAYER_PASSING_STAGE, 1);
+        }
+
+        public static void SetPassingStage(int passingStage)
+        {
+            PlayerPrefs.SetInt(ConfigConstant.PLAYER_PASSING_STAGE, passingStage);
+        }
     }
 }
 
