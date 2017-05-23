@@ -20,6 +20,12 @@ public class PersonalSceneManager : MonoBehaviour {
         SceneManager.LoadScene(name);
     }
 
+	public void LoadSceneAfterClickButton(string name)
+	{
+		MusicPlayer.getInstance ().handleClickSound ();
+		SceneManager.LoadScene (name);
+	}
+
     public void Quit()
     {
         Application.Quit();

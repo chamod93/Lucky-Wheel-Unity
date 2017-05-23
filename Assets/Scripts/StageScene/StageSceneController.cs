@@ -65,9 +65,13 @@ public class StageSceneController : MonoBehaviour
 
         buttonNextPage.onClick.AddListener(delegate ()
         {
+				MusicPlayer.getInstance().handleClickSound();
             nextPage();
         });
-        buttonPreviousPage.onClick.AddListener(delegate () { previousPage(); });
+        buttonPreviousPage.onClick.AddListener(delegate () { 
+			previousPage(); 
+			MusicPlayer.getInstance().handleClickSound();
+		});
         showOrHidePagesNavigator();
 
     }
@@ -117,7 +121,10 @@ public class StageSceneController : MonoBehaviour
             }
             else
             {
-                button.onClick.AddListener(delegate () { StartGame(i); });
+                button.onClick.AddListener(delegate () { 
+					MusicPlayer.getInstance().handleClickSound();
+					StartGame(i);
+				});
                 button.transform.Find("Text").GetComponent<Text>().text = i.ToString();
                 button.gameObject.SetActive(true);
                 setSpriteForImage(button, i);
