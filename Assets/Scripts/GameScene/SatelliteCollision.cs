@@ -38,7 +38,8 @@ public class SatelliteCollision : MonoBehaviour
             gameController.CreateOriginSattelite();
         } else
         {
-            sceneManager.LoadScene("StartScene");
+			MusicPlayer.getInstance ().handleExplodeSound ();
+			StartCoroutine (ShowFailPopup (5, collision));
         }
     }
 
@@ -53,4 +54,18 @@ public class SatelliteCollision : MonoBehaviour
         transform.position = new Vector3(newX, newY, transform.position.z);
         spin = true;
     }
+
+	IEnumerator ShowFailPopup(float time, Collider2D collision)
+	{
+		yield return new WaitForSeconds (time);
+		MusicPlayer.getInstance ().handleFailSound ();
+		StartCoroutine (BackToStartScene (5));
+	}
+
+	IEnumerator BackToStartScene(float time)
+	{
+		yield return new WaitForSeconds (time);
+		sceneManager.LoadScene ("StartScene");
+	}
+
 }

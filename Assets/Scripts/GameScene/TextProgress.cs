@@ -37,13 +37,21 @@ public class TextProgress : MonoBehaviour
         score = score + 1;
         if (score >= max)
         {
-            currentLevel = currentLevel + 1;
-            PlayerPrefHelper.SaveCurrentStage(currentLevel);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			currentLevel = currentLevel + 1;
+			PlayerPrefHelper.SaveCurrentStage(currentLevel);
+			MusicPlayer.getInstance ().handleSuccessSound ();
+			textProgress.text = score + "/" + max.ToString();
+			StartCoroutine (GoToNextLevel (5));
         }
         else
         {
             textProgress.text = score + "/" + max.ToString();
         }
     }
+
+	IEnumerator GoToNextLevel(float time)
+	{
+		yield return new WaitForSeconds (time);
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+	}
 }

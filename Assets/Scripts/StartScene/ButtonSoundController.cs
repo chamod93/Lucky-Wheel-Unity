@@ -12,6 +12,9 @@ public class ButtonSoundController : MonoBehaviour
     [SerializeField]
     private Sprite soundOff;
 
+	[SerializeField]
+	private MusicPlayer musicPlayer;
+
     private Button buttonSound;
     private Image soundSprite;
 
@@ -38,21 +41,19 @@ public class ButtonSoundController : MonoBehaviour
 
     public void onSoundButtonClicked()
     {
-        setSpriteForSoundButton();
-    }
-
-    private void setSpriteForSoundButton()
-    {
-        if (PlayerPrefHelper.GetSoundSetting())
-        {
-            soundSprite.sprite = soundOff;
-            PlayerPrefHelper.SaveSoundSetting(false);
-        }
-        else
-        {
-            soundSprite.sprite = soundOn;
-            PlayerPrefHelper.SaveSoundSetting(true);
-        }
+		MusicPlayer.getInstance ().handleClickSound ();
+		if (PlayerPrefHelper.GetSoundSetting())
+		{
+			soundSprite.sprite = soundOff;
+			PlayerPrefHelper.SaveSoundSetting(false);
+			musicPlayer.TurnOffMusic ();
+		}
+		else
+		{
+			soundSprite.sprite = soundOn;
+			PlayerPrefHelper.SaveSoundSetting(true);
+			musicPlayer.TurnOnMusic ();
+		}
     }
 
     // Update is called once per frame
