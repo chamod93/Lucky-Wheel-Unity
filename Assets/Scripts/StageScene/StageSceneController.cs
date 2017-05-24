@@ -139,14 +139,14 @@ public class StageSceneController : MonoBehaviour
                 button.transform.Find("Text").GetComponent<Text>().text = level.ToString();
                 button.gameObject.SetActive(true);
 
-                setSpriteForImage(button, level);
+                SetSpriteForImage(button, level);
             }
 
         }
 
     }
 
-    private void setSpriteForImage(Button button, int i)
+    private void SetSpriteForImage(Button button, int i)
     {
         Text text = button.transform.Find("Text").GetComponent<Text>();
         text.color = new Color(210, 244, 247);
