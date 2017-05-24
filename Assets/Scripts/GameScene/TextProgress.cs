@@ -10,7 +10,7 @@ public class TextProgress : MonoBehaviour
 {
 
     private Text textProgress;
-	private Button buttonProgress;
+    private Button buttonProgress;
     // Use this for initialization
     private GameData data;
     private int score;
@@ -25,9 +25,9 @@ public class TextProgress : MonoBehaviour
         max = data.levelData[passingStage].limit;
         textProgress = GameObject.Find("TextProgress").GetComponent<Text>();
         textProgress.text = score + "/" + max.ToString();
-		buttonProgress = GameObject.Find ("ButtonProgress").GetComponent<Button> ();
-		buttonProgress.transform.Find("Text").GetComponent<Text>().text = "LV. " + passingStage;
-		buttonProgress.GetComponent<Image>().fillAmount = 0;
+        buttonProgress = GameObject.Find("ButtonProgress").GetComponent<Button>();
+        buttonProgress.transform.Find("Text").GetComponent<Text>().text = "LV. " + passingStage;
+        buttonProgress.GetComponent<Image>().fillAmount = 0;
 
     }
 
@@ -41,15 +41,15 @@ public class TextProgress : MonoBehaviour
     {
         score = score + 1;
 
-		buttonProgress.GetComponent<Image> ().fillAmount = (float) score / max;
-		        if (score >= max)
+        buttonProgress.GetComponent<Image>().fillAmount = (float)score / max;
+        if (score >= max)
         {
             passingStage = passingStage + 1;
-            PlayerPrefHelper.SaveCurrentStage(passingStage);
+            PlayerPrefHelper.SavePassingStage(passingStage);
             int currentStage = PlayerPrefHelper.GetCurrentStage();
             if (passingStage > currentStage)
             {
-                PlayerPrefHelper.SaveCurrentStage(currentStage + 1);
+                PlayerPrefHelper.SaveCurrentStage(passingStage);
             }
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

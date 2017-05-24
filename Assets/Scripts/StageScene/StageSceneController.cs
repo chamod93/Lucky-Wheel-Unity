@@ -24,7 +24,7 @@ public class StageSceneController : MonoBehaviour
     private Button buttonPreviousPage;
     private Button buttonNextPage;
 
-    private int currentStage;
+    private int passingStage;
     private int maxPage;
     private int currentPage;
     private int startPageStage;
@@ -41,9 +41,9 @@ public class StageSceneController : MonoBehaviour
     private void initVariables()
     {
         data = GameData.LoadFromJSONResource();
-        currentStage = PlayerPrefHelper.GetCurrentStage();
+        passingStage = PlayerPrefHelper.GetPassingStage();
         maxPage = (data.levelData.Length - 1) / MAX_BUTTON_PER_PAGE;
-        currentPage = currentStage / MAX_BUTTON_PER_PAGE;
+        currentPage = passingStage / MAX_BUTTON_PER_PAGE;
         startPageStage = currentPage * MAX_BUTTON_PER_PAGE + 1;
     }
 
@@ -75,12 +75,16 @@ public class StageSceneController : MonoBehaviour
     public void nextPage()
     {
         currentPage = currentPage + 1;
+        startPageStage = currentPage * MAX_BUTTON_PER_PAGE + 1;
+        setupStages();
         showOrHidePagesNavigator();
     }
 
     public void previousPage()
     {
         currentPage = currentPage - 1;
+        startPageStage = currentPage * MAX_BUTTON_PER_PAGE + 1;
+        setupStages();
         showOrHidePagesNavigator();
     }
 
@@ -108,34 +112,39 @@ public class StageSceneController : MonoBehaviour
 
     private void setupStages()
     {
-        int i = startPageStage;
-        foreach (Button button in buttons)
+        for(int i = 0; i < buttons.Count; i++)
         {
+            int level = startPageStage + i;
+            Button button = (Button) buttons[i];
             if (i > data.levelData.Length)
             {
                 button.gameObject.SetActive(false);
             }
             else
             {
-                button.onClick.AddListener(delegate () { StartGame(i); });
-                button.transform.Find("Text").GetComponent<Text>().text = i.ToString();
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(delegate ()
+                {
+                    StartGame(level);
+                });
+                button.transform.Find("Text").GetComponent<Text>().text = level.ToString();
                 button.gameObject.SetActive(true);
-                setSpriteForImage(button, i);
+                setSpriteForImage(button, level);
             }
-            i = i + 1;
         }
+
     }
 
     private void setSpriteForImage(Button button, int i)
     {
         Text text = button.transform.Find("Text").GetComponent<Text>();
         text.color = new Color(210, 244, 247);
-        if (i < currentStage)
+        if (i < passingStage)
         {
             button.enabled = true;
             button.image.sprite = hexaUnclocked;
         }
-        else if (i == currentStage)
+        else if (i == passingStage)
         {
             button.enabled = true;
             button.image.sprite = hexaCurrent;
@@ -150,7 +159,7 @@ public class StageSceneController : MonoBehaviour
 
     private void StartGame(int level)
     {
-        PlayerPrefHelper.SetPassingStage(level);
+        PlayerPrefHelper.SavePassingStage(level);
         SceneManager.LoadScene("GameScene");
     }
 

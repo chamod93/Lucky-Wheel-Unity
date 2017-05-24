@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AssemblyCSharp;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,13 @@ public class PersonalSceneManager : MonoBehaviour {
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
+    }
+
+    public void LoadInGameScene()
+    {
+        int currentStage = PlayerPrefHelper.GetCurrentStage();
+        PlayerPrefHelper.SavePassingStage(currentStage);
+        SceneManager.LoadScene("GameScene");
     }
 
     public void Quit()

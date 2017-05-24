@@ -28,7 +28,7 @@ namespace AssemblyCSharp
 
         public static void SaveCurrentStage(int currentStage)
         {
-            PlayerPrefs.SetInt(ConfigConstant.PLAYER_SOUND_SETTING, currentStage);
+            PlayerPrefs.SetInt(ConfigConstant.PLAYER_CURRENT_STATGE, currentStage);
         }
 
         public static int GetPassingStage()
@@ -36,7 +36,7 @@ namespace AssemblyCSharp
             return PlayerPrefs.GetInt(ConfigConstant.PLAYER_PASSING_STAGE, 1);
         }
 
-        public static void SetPassingStage(int passingStage)
+        public static void SavePassingStage(int passingStage)
         {
             PlayerPrefs.SetInt(ConfigConstant.PLAYER_PASSING_STAGE, passingStage);
         }
