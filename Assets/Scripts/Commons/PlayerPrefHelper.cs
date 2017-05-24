@@ -28,7 +28,18 @@ namespace AssemblyCSharp
 
         public static void SaveCurrentStage(int currentStage)
         {
+
 			PlayerPrefs.SetInt(ConfigConstant.PLAYER_CURRENT_STATGE, currentStage);
+        }
+
+        public static int GetPassingStage()
+        {
+            return PlayerPrefs.GetInt(ConfigConstant.PLAYER_PASSING_STAGE, 1);
+        }
+
+        public static void SavePassingStage(int passingStage)
+        {
+            PlayerPrefs.SetInt(ConfigConstant.PLAYER_PASSING_STAGE, passingStage);
         }
     }
 }

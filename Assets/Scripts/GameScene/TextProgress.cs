@@ -10,20 +10,27 @@ public class TextProgress : MonoBehaviour
 {
 
     private Text textProgress;
+    private Button buttonProgress;
     // Use this for initialization
     private GameData data;
     private int score;
     private int max;
-    private int currentLevel;
+
+    private int passingStage;
 
     void Start()
     {
         score = 0;
         data = GameData.LoadFromJSONResource();
-        currentLevel = PlayerPrefHelper.GetCurrentStage();
-        max = data.levelData[currentLevel].limit;
+
+        passingStage = PlayerPrefHelper.GetPassingStage();
+        max = data.levelData[passingStage].limit;
         textProgress = GameObject.Find("TextProgress").GetComponent<Text>();
         textProgress.text = score + "/" + max.ToString();
+        buttonProgress = GameObject.Find("ButtonProgress").GetComponent<Button>();
+        buttonProgress.transform.Find("Text").GetComponent<Text>().text = "LV. " + passingStage;
+        buttonProgress.GetComponent<Image>().fillAmount = 0;
+
     }
 
     // Update is called once per frame
@@ -35,13 +42,20 @@ public class TextProgress : MonoBehaviour
     public void UpdateTextScore()
     {
         score = score + 1;
+
+        buttonProgress.GetComponent<Image>().fillAmount = (float)score / max;
         if (score >= max)
         {
-			currentLevel = currentLevel + 1;
-			PlayerPrefHelper.SaveCurrentStage(currentLevel);
+            passingStage = passingStage + 1;
+            PlayerPrefHelper.SavePassingStage(passingStage);
 			MusicPlayer.getInstance ().handleSuccessSound ();
 			textProgress.text = score + "/" + max.ToString();
-			StartCoroutine (GoToNextLevel (5));
+            int currentStage = PlayerPrefHelper.GetCurrentStage();
+            if (passingStage > currentStage)
+            {
+                PlayerPrefHelper.SaveCurrentStage(passingStage);
+            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
         {
