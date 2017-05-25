@@ -6,11 +6,13 @@
       <File FileName="Assets\Scripts\Commons\MusicPlayer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\StartScene\ButtonSoundController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Commons\PlayerPrefHelper.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameScene\GameSceneController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameScene\SatelliteCollision.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameScene\GameSceneController.cs" Line="87" Column="18" />
+      <File FileName="Assets\Scripts\GameScene\SatelliteCollision.cs" Line="45" Column="2" />
       <File FileName="Assets\Scripts\GameScene\TextProgress.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\StartScene\ButtonStageController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\StageScene\StageSceneController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StageScene\StageSceneController.cs" Line="80" Column="6" />
+      <File FileName="Assets\Resources\LevelData.json" Line="103" Column="18" />
+      <File FileName="Assets\Scripts\GameScene\SpeedHelper.cs" Line="53" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
