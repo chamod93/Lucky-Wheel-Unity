@@ -46,21 +46,27 @@ public class TextProgress : MonoBehaviour
         buttonProgress.GetComponent<Image>().fillAmount = (float)score / max;
         if (score >= max)
         {
-            passingStage = passingStage + 1;
-            PlayerPrefHelper.SavePassingStage(passingStage);
+         
 			MusicPlayer.getInstance ().handleSuccessSound ();
 			textProgress.text = score + "/" + max.ToString();
-            int currentStage = PlayerPrefHelper.GetCurrentStage();
-            if (passingStage > currentStage)
-            {
-                PlayerPrefHelper.SaveCurrentStage(passingStage);
-            }
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            CompleteLevel();
         }
         else
         {
             textProgress.text = score + "/" + max.ToString();
         }
+    }
+
+    private void CompleteLevel()
+    {
+        int currentStage = PlayerPrefHelper.GetCurrentStage();
+        passingStage = passingStage + 1;
+        PlayerPrefHelper.SavePassingStage(passingStage);
+        if (passingStage > currentStage)
+        {
+            PlayerPrefHelper.SaveCurrentStage(passingStage);
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 	IEnumerator GoToNextLevel(float time)
