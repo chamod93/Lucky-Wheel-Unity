@@ -21,6 +21,7 @@ public class GameSceneController : MonoBehaviour
     private int passingStage;
     private int angle;
     private float radius;
+    private bool stop = false;
 
     [SerializeField]
     private GameObject originSatellite;
@@ -84,11 +85,15 @@ public class GameSceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		currentSpeed = speedHelper.GetUpdateSpeed(Time.deltaTime);
+        if (stop)
+        {
+            return;
+        }
+        currentSpeed = speedHelper.GetUpdateSpeed(Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             satellite.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10);
-			MusicPlayer.getInstance ().handleClickSound ();
+            MusicPlayer.getInstance().handleClickSound();
         }
 
     }
@@ -96,9 +101,24 @@ public class GameSceneController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (stop)
+        {
+            return;
+        }
         for (int i = 0; i < moons.Length; i++)
         {
             moons[i].transform.RotateAround(planet.transform.position, new Vector3(0f, 0f, 1f), currentSpeed * Time.deltaTime);
         }
+    }
+
+    public void Stop()
+    {
+        stop = true;
+        satellite.SetActive(false);
+    }
+
+    public bool IsStop()
+    {
+        return stop;
     }
 }

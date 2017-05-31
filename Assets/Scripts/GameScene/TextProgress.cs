@@ -9,20 +9,23 @@ using UnityEngine.UI;
 public class TextProgress : MonoBehaviour
 {
 
+    private GameSceneController gameController;
     private Text textProgress;
     private Button buttonProgress;
     // Use this for initialization
     private GameData data;
     private int score;
     private int max;
+    private PanelResultController panelResultController;
 
     private int passingStage;
 
     void Start()
     {
+        panelResultController = FindObjectOfType<PanelResultController>();
+        gameController = FindObjectOfType<GameSceneController>();
         score = 0;
         data = GameData.LoadFromJSONResource();
-
         passingStage = PlayerPrefHelper.GetPassingStage();
         max = data.levelData[passingStage].limit;
         textProgress = GameObject.Find("TextProgress").GetComponent<Text>();
@@ -59,6 +62,8 @@ public class TextProgress : MonoBehaviour
 
     private void CompleteLevel()
     {
+        gameController.Stop();
+        StartCoroutine(ShowCompletePopup(0.1f, passingStage));
         int currentStage = PlayerPrefHelper.GetCurrentStage();
         passingStage = passingStage + 1;
         PlayerPrefHelper.SavePassingStage(passingStage);
@@ -66,12 +71,27 @@ public class TextProgress : MonoBehaviour
         {
             PlayerPrefHelper.SaveCurrentStage(passingStage);
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       
+     
     }
+
+    IEnumerator ShowCompletePopup(float time,int stage)
+    {
+        yield return new WaitForSeconds(time);
+        panelResultController.ShowCompletePopup(stage);
+    }    
 
 	IEnumerator GoToNextLevel(float time)
 	{
 		yield return new WaitForSeconds (time);
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
+
+    public void Hide()
+    {
+        panelResultController.ShowFailPopup();
+        textProgress.gameObject.SetActive(false);
+        buttonProgress.gameObject.SetActive(false);
+    }
 }

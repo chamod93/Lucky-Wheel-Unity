@@ -23,7 +23,7 @@ public class SatelliteCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spin)
+        if (spin && !gameController.IsStop())
         {
             transform.RotateAround(pTransform.position, new Vector3(0f, 0f, 1f), gameController.currentSpeed * Time.deltaTime);
         }
@@ -38,8 +38,9 @@ public class SatelliteCollision : MonoBehaviour
             gameController.CreateOriginSattelite();
         } else
         {
+
 			MusicPlayer.getInstance ().handleExplodeSound ();
-			StartCoroutine (ShowFailPopup (5, collision));
+			StartCoroutine (ShowFailPopup (0.1f, collision));
         }
     }
 
@@ -59,7 +60,9 @@ public class SatelliteCollision : MonoBehaviour
 	{
 		yield return new WaitForSeconds (time);
 		MusicPlayer.getInstance ().handleFailSound ();
-		StartCoroutine (BackToStartScene (5));
+        gameController.Stop();
+        textProgress.Hide();
+		//StartCoroutine (BackToStartScene (5));
 	}
 
 	IEnumerator BackToStartScene(float time)

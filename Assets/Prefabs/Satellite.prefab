@@ -99,8 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd94d698d0538974bbc56daa0e57d40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  failClip: {fileID: 8300000, guid: dfb9e126ec6ad084191a806106d87722, type: 3}
-  explodeClip: {fileID: 8300000, guid: a40779f2734c3574c9853a7c66f1262a, type: 3}
 --- !u!212 &212615097832364612
 SpriteRenderer:
   m_ObjectHideFlags: 1
