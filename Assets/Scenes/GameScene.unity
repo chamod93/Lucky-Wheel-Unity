@@ -378,6 +378,16 @@ Prefab:
       propertyPath: m_Name
       value: ButtonNext
       objectReference: {fileID: 0}
+    - target: {fileID: 114153690253276322, guid: e28a6537c5d21f94598aba7063063476,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1511150430}
+    - target: {fileID: 114153690253276322, guid: e28a6537c5d21f94598aba7063063476,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e28a6537c5d21f94598aba7063063476, type: 2}
   m_IsPrefabParent: 0
@@ -982,6 +992,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea6ebada24b82894b93d7a82e591d1cf, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1511150430 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114863745450588848, guid: ea6ebada24b82894b93d7a82e591d1cf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1511150429}
+  m_Script: {fileID: 11500000, guid: 5f8fc6cbd61623c4783cfbf9a448fa8d, type: 3}
 --- !u!1 &1524992546
 GameObject:
   m_ObjectHideFlags: 0

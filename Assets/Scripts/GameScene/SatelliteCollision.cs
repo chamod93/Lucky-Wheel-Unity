@@ -33,12 +33,15 @@ public class SatelliteCollision : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("Planet"))
         {
+			print ("Attach to planet");
             AttachToPlanet(collision);
             textProgress.UpdateTextScore();
-            gameController.CreateOriginSattelite();
+			if (!gameController.IsStop()) {
+				gameController.CreateOriginSattelite ();
+			}
         } else
         {
-
+			print ("Attach fail");
 			MusicPlayer.getInstance ().handleExplodeSound ();
 			StartCoroutine (ShowFailPopup (0.1f, collision));
         }
@@ -59,9 +62,9 @@ public class SatelliteCollision : MonoBehaviour
 	IEnumerator ShowFailPopup(float time, Collider2D collision)
 	{
 		yield return new WaitForSeconds (time);
+		gameController.Stop ();
 		MusicPlayer.getInstance ().handleFailSound ();
-        gameController.Stop();
-        textProgress.Hide();
+        textProgress.ShowFailPopup();
 		//StartCoroutine (BackToStartScene (5));
 	}
 

@@ -63,6 +63,7 @@ public class TextProgress : MonoBehaviour
     private void CompleteLevel()
     {
         gameController.Stop();
+		HideComponent();
         StartCoroutine(ShowCompletePopup(0.1f, passingStage));
         int currentStage = PlayerPrefHelper.GetCurrentStage();
         passingStage = passingStage + 1;
@@ -71,6 +72,7 @@ public class TextProgress : MonoBehaviour
         {
             PlayerPrefHelper.SaveCurrentStage(passingStage);
         }
+
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
        
      
@@ -88,10 +90,15 @@ public class TextProgress : MonoBehaviour
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
-    public void Hide()
+    public void ShowFailPopup()
     {
+		HideComponent ();
         panelResultController.ShowFailPopup();
-        textProgress.gameObject.SetActive(false);
-        buttonProgress.gameObject.SetActive(false);
+
     }
+
+	private void HideComponent(){
+		textProgress.gameObject.SetActive(false);
+		buttonProgress.gameObject.SetActive(false);
+	}
 }
