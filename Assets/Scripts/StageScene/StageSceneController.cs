@@ -24,7 +24,7 @@ public class StageSceneController : MonoBehaviour
     private Button buttonPreviousPage;
     private Button buttonNextPage;
 
-    private int passingStage;
+    private int currentStage;
     private int maxPage;
     private int currentPage;
     private int startPageStage;
@@ -42,9 +42,9 @@ public class StageSceneController : MonoBehaviour
     {
         data = GameData.LoadFromJSONResource();
 
-        passingStage = PlayerPrefHelper.GetPassingStage();
+		currentStage = PlayerPrefHelper.GetCurrentStage();
         maxPage = (data.levelData.Length - 1) / MAX_BUTTON_PER_PAGE;
-        currentPage = passingStage / MAX_BUTTON_PER_PAGE;
+        currentPage = currentStage / MAX_BUTTON_PER_PAGE;
         startPageStage = currentPage * MAX_BUTTON_PER_PAGE + 1;
     }
 
@@ -151,13 +151,13 @@ public class StageSceneController : MonoBehaviour
         Text text = button.transform.Find("Text").GetComponent<Text>();
         text.color = new Color(210, 244, 247);
 
-        if (i < passingStage)
+        if (i < currentStage)
         {
             button.enabled = true;
             button.image.sprite = hexaUnclocked;
         }
       
-        else if (i == passingStage)
+        else if (i == currentStage)
         {
             button.enabled = true;
             button.image.sprite = hexaCurrent;

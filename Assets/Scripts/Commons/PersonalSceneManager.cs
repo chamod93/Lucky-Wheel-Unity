@@ -25,6 +25,7 @@ public class PersonalSceneManager : MonoBehaviour {
     public void LoadInGameScene()
     {
         int currentStage = PlayerPrefHelper.GetCurrentStage();
+		print ("current stage:" + currentStage)  ;
         PlayerPrefHelper.SavePassingStage(currentStage);
         SceneManager.LoadScene("GameScene");
     }
