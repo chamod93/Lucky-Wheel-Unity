@@ -44,10 +44,10 @@ public class GameSceneController : MonoBehaviour
     private void InitVariables()
     {
         data = GameData.LoadFromJSONResource();
-        passingStage = PlayerPrefHelper.GetPassingStage();
+        passingStage = PlayerPrefHelper.GetPassingStage() - 1;
         levelData = data.levelData[passingStage];
         radius = Camera.main.ViewportToWorldPoint(new Vector3(RADIUS, 0, 0)).x - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
-        speedHelper = new SpeedHelper(levelData.speed);
+        speedHelper = new SpeedHelper(levelData.v1, levelData.v2);
     }
 
     private void CreatePlanet()
@@ -62,8 +62,9 @@ public class GameSceneController : MonoBehaviour
 
     private void CreateMoons()
     {
-        int angle = levelData.angle;
-        int moonNumbers = MAX_DEGREE / angle;
+        int moonNumbers = levelData.moon;
+        angle = MAX_DEGREE / moonNumbers;
+        Debug.Log("moon" + moonNumbers);
         moons = new GameObject[moonNumbers];
         Vector3 center = planet.transform.position;
         for (int i = 0; i < moonNumbers; i++)
@@ -95,7 +96,10 @@ public class GameSceneController : MonoBehaviour
             satellite.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10);
             MusicPlayer.getInstance().handleClickSound();
         }
-
+        for (int i = 0; i < moons.Length; i++)
+        {
+            moons[i].transform.RotateAround(planet.transform.position, new Vector3(0f, 0f, 1f), currentSpeed * Time.deltaTime);
+        }
     }
 
 
@@ -105,10 +109,7 @@ public class GameSceneController : MonoBehaviour
         {
             return;
         }
-        for (int i = 0; i < moons.Length; i++)
-        {
-            moons[i].transform.RotateAround(planet.transform.position, new Vector3(0f, 0f, 1f), currentSpeed * Time.deltaTime);
-        }
+        
     }
 
     public void Stop()

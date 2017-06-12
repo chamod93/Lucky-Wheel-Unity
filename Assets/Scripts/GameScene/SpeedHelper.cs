@@ -8,7 +8,6 @@ namespace Assets.Scripts.GameScene
     class SpeedHelper
     {
         private static readonly float TIME_LIMIT = 8f;
-        private static readonly float REDUCE_SPEED = 0.5f;
 
         private static readonly int STATE_ORIGIN = 0;
         private static readonly int STATE_CHANGING = 1;
@@ -17,17 +16,18 @@ namespace Assets.Scripts.GameScene
 
         private int state;
 
-        private float originSpeed;
+        private float originSpeed, secondSpeed;
         private float elapsedTime;
         private float speed;
         private float acceleration;
 
-        public SpeedHelper(float originSpeed)
+        public SpeedHelper(float originSpeed, float secondSpeed)
         {
             this.originSpeed = originSpeed;
+            this.secondSpeed = secondSpeed;
             elapsedTime = 0;
             state = STATE_ORIGIN;
-            acceleration = (originSpeed * REDUCE_SPEED - originSpeed) / TIME_LIMIT;
+            acceleration = (secondSpeed - originSpeed) / TIME_LIMIT;
         }
 
         public float GetUpdateSpeed(float deltaTime)
@@ -62,7 +62,7 @@ namespace Assets.Scripts.GameScene
             }
             else if (state == STATE_NEW_SPEED)
             {
-                return originSpeed * REDUCE_SPEED;
+                return secondSpeed;
             }
             else if (state == STATE_CHANGING_TO_ORIGIN)
             {

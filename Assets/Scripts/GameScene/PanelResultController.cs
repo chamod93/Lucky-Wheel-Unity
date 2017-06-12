@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using AssemblyCSharp;
 
 public class PanelResultController : MonoBehaviour
 {
@@ -40,7 +41,10 @@ public class PanelResultController : MonoBehaviour
         text.text = string.Format("Level {0} Completed", level);
 		pannelResult.GetComponent<Image>().color =new Color(210, 244, 247, 1);
         pannelResult.SetActive(true);
-		buttonNext.gameObject.SetActive(true);
+        if(PlayerPrefHelper.GetPassingStage() <= GameData.LoadFromJSONResource().levelData.Length)
+        {
+            buttonNext.gameObject.SetActive(true);
+        }
 
     }
 }

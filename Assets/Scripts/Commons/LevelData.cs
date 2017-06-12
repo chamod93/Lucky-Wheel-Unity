@@ -7,7 +7,9 @@ using System.Text;
 public class LevelData
 {
     public int id;
-    public int angle;
-    public int limit;
-    public int speed;
+    public int moon;
+    public int target;
+    public int direction;
+    public int v1;
+    public int v2;
 }

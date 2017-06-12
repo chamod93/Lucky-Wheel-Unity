@@ -27,7 +27,7 @@ public class TextProgress : MonoBehaviour
         score = 0;
         data = GameData.LoadFromJSONResource();
         passingStage = PlayerPrefHelper.GetPassingStage();
-        max = data.levelData[passingStage].limit;
+        max = data.levelData[passingStage - 1].target;
         textProgress = GameObject.Find("TextProgress").GetComponent<Text>();
         textProgress.text = score + "/" + max.ToString();
         buttonProgress = GameObject.Find("ButtonProgress").GetComponent<Button>();

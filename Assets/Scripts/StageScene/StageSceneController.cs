@@ -42,7 +42,7 @@ public class StageSceneController : MonoBehaviour
     {
         data = GameData.LoadFromJSONResource();
 
-        passingStage = PlayerPrefHelper.GetPassingStage();
+        passingStage = PlayerPrefHelper.GetPassingStage() - 1;
         maxPage = (data.levelData.Length - 1) / MAX_BUTTON_PER_PAGE;
         currentPage = passingStage / MAX_BUTTON_PER_PAGE;
         startPageStage = currentPage * MAX_BUTTON_PER_PAGE + 1;
@@ -123,7 +123,7 @@ public class StageSceneController : MonoBehaviour
         {
             int level = startPageStage + i;
             Button button = (Button) buttons[i];
-            if (i > data.levelData.Length)
+            if (i > data.levelData.Length - 1)
             {
                 button.gameObject.SetActive(false);
             }
