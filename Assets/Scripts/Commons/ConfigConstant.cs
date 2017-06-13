@@ -12,6 +12,8 @@ namespace AssemblyCSharp
 		public static readonly string PLAYER_SOUND_SETTING = "unity.player.sound.setting";
         public static readonly string PLAYER_CURRENT_STATGE = "unity.player.current.stage";
         public static readonly string PLAYER_PASSING_STAGE = "unity.player.passing.stage";
+        public static readonly string FACEBOOK_ID = "unity.player.facebook.id";
+
     }
 }
 

@@ -41,6 +41,16 @@ namespace AssemblyCSharp
         {
             PlayerPrefs.SetInt(ConfigConstant.PLAYER_PASSING_STAGE, passingStage);
         }
+
+        public static String GetFacebookId()
+        {
+            return PlayerPrefs.GetString(ConfigConstant.FACEBOOK_ID, null);
+        }
+
+        public static void SaveFacebookId(String fbId)
+        {
+            PlayerPrefs.SetString(ConfigConstant.FACEBOOK_ID, fbId);
+        }
     }
 }
 

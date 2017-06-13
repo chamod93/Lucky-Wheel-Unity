@@ -13,7 +13,6 @@ public class GameData
         {
             TextAsset json = Resources.Load("LevelData", typeof(TextAsset)) as TextAsset;
             instance = JsonUtility.FromJson<GameData>(json.text);
-            PlayerPrefs.DeleteAll();
         }
         return instance;
     }
