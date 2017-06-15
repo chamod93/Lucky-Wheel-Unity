@@ -14,6 +14,14 @@ public class PanelResultController : MonoBehaviour
     [SerializeField]
     private Button buttonNext;
 
+    [SerializeField]
+    private GameObject generalDialog;
+
+    private Color coverColor = Color.black;
+
+    [SerializeField]
+    private float showingTime = 0.3f;
+
     // Use this for initialization
     void Start()
     {
@@ -45,6 +53,27 @@ public class PanelResultController : MonoBehaviour
         {
             buttonNext.gameObject.SetActive(true);
         }
-
+        else
+        {
+            StartCoroutine(ShowCongratulationDialog());
+            PlayerPrefHelper.SavePassingStage(PlayerPrefHelper.GetPassingStage() - 1);
+        }
+    }
+    
+    private IEnumerator ShowCongratulationDialog()
+    {
+        generalDialog.SetActive(true);
+        GameObject realDialog = generalDialog.transform.GetChild(0).gameObject;
+        realDialog.SetActive(true);
+        realDialog.transform.localScale = new Vector3(0, 0, 0);
+        float t = 0;
+        while(t <= 1)
+        {
+            realDialog.transform.localScale = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(1.1f, 1.1f, 1.1f), t);
+            t += Time.deltaTime / showingTime;
+            generalDialog.GetComponent<Image>().color = coverColor * t*0.8f;
+            yield return null ;
+        }
+        realDialog.transform.localScale = new Vector3(1, 1, 1);
     }
 }

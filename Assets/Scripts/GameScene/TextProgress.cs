@@ -68,7 +68,7 @@ public class TextProgress : MonoBehaviour
         int currentStage = PlayerPrefHelper.GetCurrentStage();
         passingStage = passingStage + 1;
         PlayerPrefHelper.SavePassingStage(passingStage);
-        if (passingStage > currentStage)
+        if (passingStage > currentStage && PlayerPrefHelper.GetPassingStage() <= GameData.LoadFromJSONResource().levelData.Length)
         {
             PlayerPrefHelper.SaveCurrentStage(passingStage);
         }
