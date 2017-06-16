@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Assets.Scripts.GameScene;
+using UnityEngine.SceneManagement;
 
 public class GameSceneController : MonoBehaviour
 {
@@ -99,6 +100,10 @@ public class GameSceneController : MonoBehaviour
         for (int i = 0; i < moons.Length; i++)
         {
             moons[i].transform.RotateAround(planet.transform.position, new Vector3(0f, 0f, 1f), currentSpeed * Time.deltaTime);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("StartScene");
         }
     }
 
