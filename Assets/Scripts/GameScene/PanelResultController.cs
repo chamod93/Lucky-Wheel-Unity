@@ -47,8 +47,8 @@ public class PanelResultController : MonoBehaviour
     {
         Text text = pannelResult.transform.Find("TextResult").GetComponent<Text>();
         text.text = string.Format("Level {0} Completed", level);
-		pannelResult.GetComponent<Image>().color =new Color(210, 244, 247, 1);
         pannelResult.SetActive(true);
+        pannelResult.GetComponent<Image>().color =new Color(210f/255f, 244f/255f, 247f/255f, 132f/255f);
         if(PlayerPrefHelper.GetPassingStage() <= GameData.LoadFromJSONResource().levelData.Length)
         {
             buttonNext.gameObject.SetActive(true);

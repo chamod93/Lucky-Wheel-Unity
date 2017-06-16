@@ -149,8 +149,6 @@ public class StageSceneController : MonoBehaviour
     private void SetSpriteForImage(Button button, int i)
     {
         Text text = button.transform.Find("Text").GetComponent<Text>();
-        text.color = new Color(210, 244, 247);
-
         if (i < passingStage)
         {
             button.enabled = true;
@@ -166,7 +164,6 @@ public class StageSceneController : MonoBehaviour
         {
             button.enabled = false;
             button.image.sprite = hexaLocked;
-            text.color = new Vector4(210, 244, 247, 10f);
         }
     }
 
